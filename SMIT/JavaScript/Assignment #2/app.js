@@ -57,13 +57,10 @@ function addListItem(text) {
     
     const list = document.querySelector('ul');
   
-   
     const newItem = document.createElement('li');
-    
-   
+     
     newItem.textContent = text;
   
-    
     document.body.appendChild(newItem);
   }
 
@@ -71,18 +68,73 @@ function addListItem(text) {
 
 ////// Question #5 ///////
 
-function changeBackgroundColor(element, color) {
+
+  function changeBackgroundColor(element, color) {
     element.style.backgroundColor = color;
   }
-
-  const myElement = document.querySelector("#my-element");
-  changeBackgroundColor(myElement, "blue");
   
+  const myDiv = document.getElementById('myDiv');
+changeBackgroundColor(myDiv, 'red');
+
 
 // =============================//
+
 
 ////// Question #6 ///////
 
+function saveData(name, obj) {
+
+  let stringify = JSON.stringify(obj)
+      localStorage.setItem(name, stringify);
+  }
+  
+  
+  let myObj = {
+    firstName:"Talha",  lastName:"Nizam", age:21, eyeColor:"brown"
+  }
+  let objName = prompt("Enter Object Name: ");
+  saveData(objName, myObj)
 
 
 // =============================//
+
+
+////// Question #7 ///////
+
+
+
+function retrieveFromLocalStorage(key) {
+  const item = localStorage.getItem(key);
+  return JSON.parse(item);
+
+}
+
+const myObject = retrieveFromLocalStorage('myKey');
+console.log(myObject); 
+
+// =============================//
+
+
+
+////// Question #8 ///////
+
+function saveToLocalStorage(obj) {
+  // Save each property to localStorage using its name as the key
+  for (const [key, value] of Object.entries(obj)) {
+    localStorage.setItem(key, JSON.stringify(value));
+  }
+  
+  // Retrieve the saved properties and construct a new object
+  const newObj = {};
+  for (const key of Object.keys(obj)) {
+    newObj[key] = JSON.parse(localStorage.getItem(key));
+  }
+  
+  return newObj;
+}
+
+saveToLocalStorage({firstName:"Talha",  lastName:"Nizam", age:21, eyeColor:"brown"});
+
+// =============================//
+
+
